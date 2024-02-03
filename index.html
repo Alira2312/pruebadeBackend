@@ -12,9 +12,12 @@
     <div style="background-color: #87CEEB; text-align: center;">
         <h2>Descubriendo Videojuegos</h2>
         <p style="font-family: Arial;text-align: center;">
-            Un videojuego o juego de video es un software o juego electrónico en el que uno o más jugadores interactúan por medio de un controlador, con un dispositivo electrónico que muestra imágenes de video.<br>
-            Este dispositivo, conocido genéricamente como «plataforma», puede ser una computadora, una máquina de arcade, una consola de videojuegos o un dispositivo portátil, como por ejemplo un teléfono móvil, teléfono inteligente, tableta o una consola de videojuegos portátil. La industria de los videojuegos es un sector en constante crecimiento y se ha convertido en una forma de entretenimiento muy popular a nivel mundial.Un videojuego o juego de video es un software o juego electrónico en el que uno o más jugadores interactúan por medio de un controlador, con un dispositivo electrónico que muestra imágenes de video.​ <br>
-            Este dispositivo, conocido genéricamente como «plataforma», puede ser una computadora, una máquina de arcade, una consola de videojuegos o un dispositivo portátil, como por ejemplo un teléfono móvil, teléfono inteligente, tableta o una consola de videojuegos porttil. La industria de los videojuegos es un sector en constante crecimiento y se ha convertido en una forma de entretenimiento muy popular a nivel mundial.
+            Un videojuego o juego de video es un software o juego electrónico en el que uno o más jugadores interactúan por medio de un controlador, con un dispositivo electrónico que muestra imágenes de video.<br> Este dispositivo, conocido genéricamente
+            como «plataforma», puede ser una computadora, una máquina de arcade, una consola de videojuegos o un dispositivo portátil, como por ejemplo un teléfono móvil, teléfono inteligente, tableta o una consola de videojuegos portátil. La industria
+            de los videojuegos es un sector en constante crecimiento y se ha convertido en una forma de entretenimiento muy popular a nivel mundial.Un videojuego o juego de video es un software o juego electrónico en el que uno o más jugadores interactúan
+            por medio de un controlador, con un dispositivo electrónico que muestra imágenes de video.​ <br> Este dispositivo, conocido genéricamente como «plataforma», puede ser una computadora, una máquina de arcade, una consola de videojuegos o un
+            dispositivo portátil, como por ejemplo un teléfono móvil, teléfono inteligente, tableta o una consola de videojuegos porttil. La industria de los videojuegos es un sector en constante crecimiento y se ha convertido en una forma de entretenimiento
+            muy popular a nivel mundial.
         </p>
         <ul style="font-family: Arial; text-align: justify; margin-bottom: 30px;">
             <li>Exploraremos mundos virtuales llenos de emocionantes misiones.</li>
@@ -39,9 +42,9 @@
             <li>Polimorfismo: Capacidad para que objetos de diferentes clases respondan al mismo método.</li>
         </ul>
         <div style="width: 100%;">
-            <div >
-                <h2 >Ventajas de la POO</h2>
-                <ul >
+            <div>
+                <h2>Ventajas de la POO</h2>
+                <ul>
                     <li>Reutilización de Código</li>
                     <li>Modularidad</li>
                     <li>Encapsulamiento</li>
@@ -49,10 +52,10 @@
                     <li>Polimorfismo</li>
                 </ul>
             </div>
-    
-            <div >
-                <h2 >Desventajas de la POO</h2>
-                <ul >
+
+            <div>
+                <h2>Desventajas de la POO</h2>
+                <ul>
                     <li>Complejidad</li>
                     <li>Consumo de Recursos</li>
                     <li>Curva de Aprendizaje</li>
@@ -105,9 +108,84 @@
         </table>
     </div>
 
+    <div>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" value="alberto lira">
+        <label for="edad">Edad:</label>
+        <input type="number" id="edad" pattern="[0-9]*" value="23">
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="correo@ejemplo.com">
+    </div>
+    <div>
+        <label>Sexo:</label> M <input type="radio" name="sexo" id="masculino"> F <input type="radio" name="sexo" id="femenino">
+    </div>
+    <div>
+        <label>Pasatiempo:</label> Deporte <input type="checkbox" id="deporte"><br> Comida <input type="checkbox" id="comida"><br> Leer <input type="checkbox" id="leer">
+    </div>
+
+    <div>
+        <label for="readonly">Campo de lectura:</label>
+        <input type="text" id="readonly" value="Valor solo de lectura" readonly>
+    </div>
+    <div>
+        <button onclick="guardarInformacion()">Aceptar</button>
+        <button onclick="resetearCajas()">Reset</button>
+    </div>
     <footer>
         <a href="https://alira2312.github.io/pruebadeBackend/" style="font-size: 50px;text-align: center;font-weight: 500;">para mas contenido visita nuestra pagina.</a>
     </footer>
+    <script>
+        function guardarInformacion() {
+            var nombre = document.getElementById("nombre").value;
+            var edad = document.getElementById("edad").value;
+            var sexo = document.querySelector('input[name="sexo"]:checked');
+            var pasatiempos = document.querySelectorAll('input[type="checkbox"]:checked');
+            var email = document.getElementById("email").value;
+
+            if (!isValidEmail(email)) {
+                alert("Por favor, ingrese un correo electrónico válido.");
+                return;
+            }
+
+            var mensaje = "Tu nombre es: " + nombre + "\nTu edad es: " + edad;
+
+            if (sexo) {
+                mensaje += "\nTu sexo es: " + sexo.value;
+            }
+
+            if (pasatiempos.length > 0) {
+                mensaje += "\nTus pasatiempos son: ";
+                pasatiempos.forEach(function(pasatiempo) {
+                    mensaje += pasatiempo.nextSibling.nodeValue.trim() + " ";
+                });
+            }
+
+            mensaje += "\nTu email es: " + email;
+
+            alert(mensaje);
+        }
+
+        function resetearCajas() {
+            document.getElementById("nombre").value = "Alberto lira";
+            document.getElementById("edad").value = "23";
+            document.getElementById("masculino").checked = false;
+            document.getElementById("femenino").checked = false;
+            document.getElementById("deporte").checked = false;
+            document.getElementById("comida").checked = false;
+            document.getElementById("leer").checked = false;
+            document.getElementById("email").value = "";
+        }
+
+        function isValidEmail(email) {
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+    </script>
+
+
 
 </body>
+
 </html>
